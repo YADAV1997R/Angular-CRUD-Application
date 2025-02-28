@@ -1,0 +1,117 @@
+<div class="container-fluid">
+    <div class="row p-2 bg-info">
+        <div class="col-6">
+            <h3>Employee List</h3>
+            <!-- {{employeeList}} -->
+        </div>
+        <div class="col-6 text-end">
+
+            <button class="btn btn-warning" (click)="openModal()">Add Employee</button>
+        </div>
+    </div>
+    
+    <table class="table table=bordered table-striped " *ngIf="employeeList.length && employeeList.length > 0">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Age</th>
+                <th>Salary</th>
+                <th>Status</th>
+                <th class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of employeeList; track $index) {
+            <tr>
+                <td>{{item.name | capitalize}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.moblieNo}}</td>
+                <td>{{item.age}}</td>
+                <td>{{item.salary}}</td>
+                <td>{{item.status}}</td>
+                <td class="text-center">
+
+                    <button class="btn btn-primary" (click)="OnEdit(item)">Edit</button> ||
+                    <button class="btn btn-danger" (click)="onDelete(item)">Delete</button>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                @if(employeeForm.value.id!=0){
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Update Employee</h1>
+                }
+                @else {
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add Employee</h1>
+                }
+               
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <input type="text" formControlName="name" class="form-control" name="name"
+                                placeholder="Name">
+                        </div>
+
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-6">
+                            <input type="email" formControlName="email" name="email" class="form-control"
+                                placeholder="Email">
+                        </div>
+                        <div class="col-6">
+                            <input type="number" formControlName="moblieNo" name="moblieNo" class="form-control"
+                                placeholder="Mobile">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-6">
+                            <input type="number" formControlName="age" name="age" class="form-control"
+                                placeholder="Age">
+                        </div>
+                        <div class="col-6">
+                            <input type="number" formControlName="salary" name="salary" class="form-control"
+                                placeholder="Salary">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <div class="form-group-check">
+                                <input type="checkbox" formControlName="status" name="status" class="form-check-input"
+                                    placeholder="checkbox">
+                                <label class="ms-2">Active?</label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    @if(employeeForm.value.id==0){
+                        <button type="submit" [disabled]="this.employeeForm.invalid" class="btn btn-primary">Save</button>
+                    }
+                    @else {
+                        <button type="submit" [disabled]="this.employeeForm.invalid" class="btn btn-success">Update</button> 
+                    }
+
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                        (click)="closeModel()">Close</button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

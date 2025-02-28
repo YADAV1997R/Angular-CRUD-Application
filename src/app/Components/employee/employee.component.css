@@ -1,0 +1,70 @@
+/* .custom-title {
+    color: #ff4500; /* Orange title */
+  /* } */
+  
+  /* .custom-text {
+    color: #dc3545; /* Red text */
+    /* font-size: 18px; */
+  /* } */ 
+
+  .swal-progress-popup {
+    position: relative; /* Ensure popup container positioning */
+    padding-bottom: 10px; /* Space for progress bar */
+  }
+  .custom-title {
+    color: #ff4500; /* Orange title */
+  }
+  
+  .custom-text {
+    color: #dc3545; /* Red text */
+    font-size: 18px;
+  }
+  
+  /* Custom Animation */
+  .custom-popup {
+    animation: slideIn 0.5s ease-in-out;
+  }
+  
+  @keyframes slideIn {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Optional: Exit animation ke liye SweetAlert2 hideClass use karein */
+  .custom-popup.swal2-hide {
+    animation: slideOut 0.5s ease-in-out;
+  }
+  
+  @keyframes rotateIn {
+    0% {
+      transform: rotate(-90deg);
+      opacity: 0;
+    }
+    100% {
+      transform: rotate(0);
+      opacity: 1;
+    }
+  }
+  .custom-popup {
+    animation: rotateIn 0.5s ease-in-out;
+    
+  }
+  .animate__animated {
+    --animate-duration: 0.5s; /* Animation speed */
+  }
+  /* Custom progress bar agar chahiye toh */
+/* Custom Progress Bar */
+.no-records-progress {
+    animation: progress 2s linear infinite; 
+    background: #28a745;
+    height: 8px;
+
+  }
+  
+ 
